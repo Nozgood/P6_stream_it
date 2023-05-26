@@ -1,0 +1,25 @@
+.movie__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.best__movie {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.img__container {
+    width: 500px;
+    height: 500px;   
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.img__container img {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
