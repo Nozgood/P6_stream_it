@@ -3,7 +3,7 @@ const API_ENDPOINT = "http://localhost:8000/api/v1/titles"
 const IMDB_SCORE_MAX = "9.6"
 const IMDB_SCORE_MAX_SECOND = "9.3"
 const BEST_MOVIE_URL = API_ENDPOINT + "?imdb_score_min=" + IMDB_SCORE_MAX
-const SECOND_BEST_MOVIE_URL = API_ENDPOINT + "?imdb_score_min=" + IMDB_SCORE_MAX_SECOND
+const SECOND_BEST_MOVIE_URL = API_ENDPOINT + "?imdb_score_min=" + IMDB_SCORE_MAX_SECOND + "&sort_by=" + "-imdb_score"
 const BEST_MOVIE_DIV = document.getElementsByClassName("best__movie")
 const BEST_MOVIE_TITLE = document.getElementById("best__movie-title")
 const BEST_MOVIE_IMG = document.getElementById("best__movie-img")
@@ -34,6 +34,7 @@ async function buildMovie() {
     buildBestMovie(data)
 
     data = await get(SECOND_BEST_MOVIE_URL)
+    console.log(data)
     let otherBestMovies = []
     for (let i = 0; i < data.results.length; i++) {
         if (data.results[i].title != BEST_MOVIE_TITLE.textContent) {
@@ -51,6 +52,8 @@ async function buildMovie() {
             } 
         }
     }
+
+    console.log(otherBestMovies)
 
     for (let i=0; i < otherBestMovies.length; i++) {
         let movieTitle = document.getElementById("second__movie-title-" + i)
