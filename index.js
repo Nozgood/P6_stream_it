@@ -1,6 +1,9 @@
 const FETCH_ERROR = "error during the request"
 const API_ENDPOINT = "http://localhost:8000/api/v1/titles"
 const IMDB_SCORE_MAX = "9.6"
+const IMDB_SCORE_MAX_SECOND = "9.3"
+const BEST_MOVIE_URL = API_ENDPOINT + "?imdb_score_min=" + IMDB_SCORE_MAX
+const SECOND_BEST_MOVIE_URL = API_ENDPOINT + "?imdb_score_min=" + IMDB_SCORE_MAX_SECOND
 const BEST_MOVIE_DIV = document.getElementsByClassName("best__movie")
 const BEST_MOVIE_TITLE = document.getElementById("best__movie-title")
 const BEST_MOVIE_IMG = document.getElementById("best__movie-img")
@@ -17,25 +20,46 @@ async function get(URL) {
     const data = await res.json()
     return data
 }
+async function buildBestMovie(data) {
+    const bestMovie = data.results[3]
+    const singleMovieData = await get(API_ENDPOINT + "/" + bestMovie.id)
 
-async function fetchMovieID(URL) {
-    data = await get(URL)
-    let bestMovie = data.results[3]
-
-    return bestMovie.id
+    BEST_MOVIE_TITLE.innerHTML = singleMovieData.title
+    BEST_MOVIE_IMG.setAttribute("src", singleMovieData.image_url)
+    BEST_MOVIE_DESC.innerHTML = singleMovieData.description
 }
 
-async function buildMovie(URL, method) {
-    id = await fetchMovieID(URL)
-    console.log(id)
-    const movieData = await get(API_ENDPOINT + "/" + id)
-    console.log(movieData)
+async function buildMovie() {
+    let data = await get(BEST_MOVIE_URL)
+    buildBestMovie(data)
 
-    if(method == "bestMovie"){
-        BEST_MOVIE_TITLE.innerHTML = movieData.title
-        BEST_MOVIE_IMG.setAttribute("src", movieData.image_url)
-        BEST_MOVIE_DESC.innerHTML = movieData.description
+    data = await get(SECOND_BEST_MOVIE_URL)
+    let otherBestMovies = []
+    for (let i = 0; i < data.results.length; i++) {
+        if (data.results[i].title != BEST_MOVIE_TITLE.textContent) {
+            otherBestMovies.push(data.results[i])
+        } 
     }
+    if (data.next != "") {
+        data = await get(data.next)
+        for (let i = 0; i < data.results.length; i++) {
+            if (data.results[i].title != BEST_MOVIE_TITLE.textContent) {
+                otherBestMovies.push(data.results[i])
+                if (otherBestMovies.length == 7) {
+                    i = data.results.length
+                }
+            } 
+        }
+    }
+
+    for (let i=0; i < otherBestMovies.length; i++) {
+        let movieTitle = document.getElementById("second__movie-title-" + i)
+        let movieImg = document.getElementById("second__movie-img-" + i)
+        movieTitle.innerHTML = otherBestMovies[i].title
+        movieImg.setAttribute("src", otherBestMovies[i].image_url)
+    }
+
 }
 
-buildMovie(API_ENDPOINT + "?imdb_score_min=" + IMDB_SCORE_MAX, "bestMovie")
+// get and display information about the best movie of the api and the seven others
+buildMovie()
