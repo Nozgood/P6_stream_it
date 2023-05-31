@@ -59,3 +59,7 @@ button:hover {
     height: 100%;
     border-radius: 5px;
 }
+
+.movie__category-container {
+    display: flex;
+}

@@ -74,9 +74,14 @@ async function buildMovie() {
     firstGenderMovies = await buildMoviesData(firstGenderData, max_length=7)
     buildMovies(firstGenderMovies, "movie__first-category-image-")
 
-    secondGenderData = await get(API_ENDPOINT + "?genres=" + SECOND_GENDER + "&sort_by=-year")
+    secondGenderData = await get(API_ENDPOINT + "?genre=" + SECOND_GENDER + "&sort_by=-year")
     secondGenderMovies = await buildMoviesData(secondGenderData, max_length=7)
     buildMovies(secondGenderMovies, "movie__second-category-image-")
+
+    thirdGenderData = await get(API_ENDPOINT + "?genre=" + THIRD_GENDER + "&sort_by=-year")
+    console.log(thirdGenderData)
+    thirdGenderMovies = await buildMoviesData(thirdGenderData, max_length=7)
+    buildMovies(thirdGenderMovies, "movie__third-category-image-")
 }
 
 // get and display information about the best movie of the api and the seven others
