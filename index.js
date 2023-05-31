@@ -4,6 +4,9 @@ const BEST_MOVIE_URL = API_ENDPOINT + "?sort_by=-imdb_score"
 const BEST_MOVIE_TITLE = document.getElementById("best__movie-title")
 const BEST_MOVIE_IMG = document.getElementById("best__movie-img")
 const BEST_MOVIE_DESC = document.getElementById("best__movie-description")
+const FIRST_GENDER = "Adventure"
+const SECOND_GENDER = "Animation"
+const THIRD_GENDER = "Fantasy"
 
 // get function will fetch the given url and returns raw datas 
 async function get(URL) {
@@ -26,11 +29,9 @@ async function buildBestMovie(data) {
     BEST_MOVIE_DESC.innerHTML = singleMovieData.description
 }
 
-async function buildSecondBestMovies(movies) {
+async function buildMovies(movies, idName) {
     for (let i=0; i < movies.length; i++) {
-        let movieTitle = document.getElementById("second__movie-title-" + i)
-        let movieImg = document.getElementById("second__movie-img-" + i)
-        movieTitle.innerHTML = movies[i].title
+        let movieImg = document.getElementById(idName + i)
         movieImg.setAttribute("src", movies[i].image_url)
     }
 }
@@ -54,10 +55,29 @@ async function buildMovie() {
 
     buildBestMovie(movies[0])
     movies.shift()
-    buildSecondBestMovies(movies)
+    buildMovies(movies, "second__movie-img-")
+
+    // FETCH MOVIES FOR FIRST CATEGORY
+    firstGenderData = await get(API_ENDPOINT + "?genre=" + FIRST_GENDER + "&sort_by=-year")
+    firstGenderMovies = []
+    next = firstGenderData.next
+
+    for(i=0; i < firstGenderData.results.length; i++) {
+        firstGenderMovies.push(firstGenderData.results[i])
+    }
+
+    // FETCH SECOND PART 
+    firstGenderData = await get(next)
+
+    for (i=0; i < 2; i++) {
+        firstGenderMovies.push(firstGenderData.results[i])
+    }
+
+    buildMovies(firstGenderMovies, "movie__first-category-image-")
+
+    genres = await get("http://localhost:8000/api/v1/genres/")
+    console.log(genres)
 }
 
 // get and display information about the best movie of the api and the seven others
 buildMovie()
-
-// genres = await get("")
