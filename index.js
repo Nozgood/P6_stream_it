@@ -19,6 +19,29 @@ async function get(URL) {
     return data
 }
 
+async function buildMoviesData(data, max_length) {
+    moviesData = []
+
+    for (i=0; i < data.results.length; i++) {
+        moviesData.push(data.results[i])
+    }
+
+    const SECOND_URL = data.next
+    data = await get(SECOND_URL)
+
+    if (max_length == 8) {
+        for (i=0; i < 3; i++) {
+            moviesData.push(data.results[i])
+        }
+    } else if (max_length == 7) {
+        for (i=0; i < 2; i++) {
+            moviesData.push(data.results[i])
+        }
+    }
+
+    return moviesData
+}
+
 async function buildBestMovie(data) {
     // FETCH FULL INFO OF BEST MOVIE
     const singleMovieData = await get(API_ENDPOINT + "/" + data.id)
@@ -37,46 +60,23 @@ async function buildMovies(movies, idName) {
 }
 
 async function buildMovie() {
-    // FETCH FIRST PART OF BEST MOVIES  
+    // FETCH BEST RATED MOVIES 
     let data = await get(BEST_MOVIE_URL)
-    let movies = []
+    moviesData = await buildMoviesData(data, max_length=8)
 
-    for (i=0; i < data.results.length; i++) {
-        movies.push(data.results[i])
-    }
+    // BUILD BEST MOVIE AND 7 OTHER BEST MOVIES
+    buildBestMovie(moviesData[0])
+    moviesData.shift()
+    buildMovies(moviesData, "second__movie-img-")
 
-    // FETCH SECOND PART OF BEST MOVIES 
-    const SECOND_URL = data.next
-    data = await get(SECOND_URL)
-
-    for (i=0; i < 3; i++) {
-        movies.push(data.results[i])
-    }
-
-    buildBestMovie(movies[0])
-    movies.shift()
-    buildMovies(movies, "second__movie-img-")
-
-    // FETCH MOVIES FOR FIRST CATEGORY
+    // FETCH AND BUILD MOVIES FOR FIRST CATEGORY    
     firstGenderData = await get(API_ENDPOINT + "?genre=" + FIRST_GENDER + "&sort_by=-year")
-    firstGenderMovies = []
-    next = firstGenderData.next
-
-    for(i=0; i < firstGenderData.results.length; i++) {
-        firstGenderMovies.push(firstGenderData.results[i])
-    }
-
-    // FETCH SECOND PART 
-    firstGenderData = await get(next)
-
-    for (i=0; i < 2; i++) {
-        firstGenderMovies.push(firstGenderData.results[i])
-    }
-
+    firstGenderMovies = await buildMoviesData(firstGenderData, max_length=7)
     buildMovies(firstGenderMovies, "movie__first-category-image-")
 
-    genres = await get("http://localhost:8000/api/v1/genres/")
-    console.log(genres)
+    secondGenderData = await get(API_ENDPOINT + "?genres=" + SECOND_GENDER + "&sort_by=-year")
+    secondGenderMovies = await buildMoviesData(secondGenderData, max_length=7)
+    buildMovies(secondGenderMovies, "movie__second-category-image-")
 }
 
 // get and display information about the best movie of the api and the seven others
