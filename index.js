@@ -45,6 +45,7 @@ async function buildMoviesData(data, max_length) {
 async function buildBestMovie(data) {
     // FETCH FULL INFO OF BEST MOVIE
     const singleMovieData = await get(API_ENDPOINT + "/" + data.id)
+    console.log(singleMovieData)
 
     // INSERT IN THE HTML
     BEST_MOVIE_TITLE.innerHTML = singleMovieData.title

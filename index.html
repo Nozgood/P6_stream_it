@@ -5,133 +5,146 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">    
     <title> JSI - JustStreamIt</title>
     <link rel="icon" href="assets/favicon-2.png">
 </head>
 <body>
-    <div class="movie__container">
+    <header class="header">
+        <div class="header__container">
+            <h1 class="header__title">JustStreamIt</h1>
+        </div>
+        <div class="header__container">
+            <nav class="header__nav">
+                <a href="#" class="header__nav-link">Accueil</a>
+                <a href="#" class="header__nav-link">Catégories</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
         <div class="best__movie movie__card">
-            <h1 class="movie__title" id="best__movie-title"></h1>
             <div class="img__container">
                 <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="best__movie-img">
             </div>
-            <button class="best__movie-redirect movie__redirect">
-                More Informations
-            </button>  
-            <p class="movie__description" id="best__movie-description"></p>
-        </div>
-        <div class="second__movie movie__card">
-            <h1 class="second__movie-title" id="second__movie-title-0"></h1>
-            <div class="img__container">
-                <img  src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-0">
+            <div class="best__movie-informations">
+                <div class="best__movie-informations-title">
+                    <h1 class="movie__title" id="best__movie-title"></h1>
+                </div>
+                <div class="best__movie-informations-content">
+                    <p class="movie__description" id="best__movie-description"></p>
+                    <button class="best__movie-redirect movie__redirect">
+                        More Informations
+                    </button>  
+                </div>
             </div>
         </div>
-        <div class="second__movie movie__card">
-            <h1 class="second__movie-title" id="second__movie-title-1"></h1>
-            <div class="img__container">
-                <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-1">
+        <div class="second__movie-container">
+            <h1 class="second__movie-title">
+                Films les mieux notés
+            </h1>
+            <div class="movie__cards">
+                    <div class="second__movie movie__card img__container">
+                        <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-0">
+                    </div>
+                    <div class="second__movie movie__card img__container">
+                        <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-1">
+                    </div>
+                    <div class="second__movie movie__card img__container">
+                        <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-2">
+                    </div>
+                    <div class="second__movie movie__card img__container">
+                        <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-3">
+                    </div>
+                    <div class="second__movie movie__card img__container">
+                        <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-4">
+                    </div>
+                    <div class="second__movie movie__card img__container">
+                        <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-5">
+                    </div>
+                    <div class="second__movie movie__card img__container">
+                        <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-6">
+                    </div>
             </div>
         </div>
-        <div class="second__movie movie__card">
-            <h1 class="second__movie-title" id="second__movie-title-2"></h1>
-            <div class="img__container">
-                <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-2">
-            </div>
-        </div>
-        <div class="second__movie movie__card">
-            <h1 class="second__movie-title" id="second__movie-title-3"></h1>
-            <div class="img__container">
-                <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-3">
-            </div>
-        </div>
-        <div class="second__movie movie__card">
-            <h1 class="second__movie-title" id="second__movie-title-4"></h1>
-            <div class="img__container">
-                <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-4">
-            </div>
-        </div>
-        <div class="second__movie movie__card">
-            <h1 class="second__movie-title" id="second__movie-title-5"></h1>
-            <div class="img__container">
-                <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-5">
-            </div>
-        </div>
-        <div class="second__movie movie__card">
-            <h1 class="second__movie-title" id="second__movie-title-6"></h1>
-            <div class="img__container">
-                <img src="./assets/loader.gif" alt="image of the best movie of" class="movie__img" id="second__movie-img-6">
-            </div>
-        </div>
-        <div class="movie__category-container">
+        <div class="movie__category-container" id="first__category">
             <h1 class="movie__category-title">Adventure</h1>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-0">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-1">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-2">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-3">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-4">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-5">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-6">
+            <div class="movie__cards">
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-0">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-1">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-2">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-3">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-4">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-5">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__first-category-image-6">
+                </div>
             </div>
         </div>
         <div class="movie__category-container">
             <h1 class="movie__category-title">Animation</h1>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-0">
+            <div class="movie__cards">
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-0">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-1">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-2">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-3">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-4">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-5">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-6">
+                </div>
             </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-1">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-2">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-3">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-4">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-5">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__second-category-image-6">
-            </div>
+        
         </div>
-        <div class="movie__category-container">
+        <div class="movie__category-container" id="third__category">
             <h1 class="movie__category-title">Fantasy</h1>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-0">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-1">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-2">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-3">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-4">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-5">
-            </div>
-            <div class="movie__category-card movie__card">
-                <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-6">
+            <div class="movie__cards">
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-0">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-1">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-2">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-3">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-4">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-5">
+                </div>
+                <div class="movie__category-card movie__card img__container">
+                    <img src="./assets/loader.gif" alt="image of a movie from a category" id="movie__third-category-image-6">
+                </div>
             </div>
         </div>
     </div>
