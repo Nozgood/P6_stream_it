@@ -51,12 +51,22 @@ async function buildBestMovie(data) {
     BEST_MOVIE_TITLE.innerHTML = singleMovieData.title
     BEST_MOVIE_IMG.setAttribute("src", singleMovieData.image_url)
     BEST_MOVIE_DESC.innerHTML = singleMovieData.description
+    let bestMovieButton = document.getElementById("best__movie-modal")
+    bestMovieButton.addEventListener("click", function () {
+        fillModalWindow(singleMovieData)
+    })
 }
 
 async function buildMovies(movies, idName) {
     for (let i=0; i < movies.length; i++) {
         let movieImg = document.getElementById(idName + i)
         movieImg.setAttribute("src", movies[i].image_url)
+        movieImg.setAttribute("data-id", movies[i].id)
+        movieImg.addEventListener("click", async function() {
+            let movieData = await get(API_ENDPOINT + "/" + movieImg.dataset.id)
+            console.log(movieData)
+            fillModalWindow(movieData)
+        })
     }
 }
 
@@ -75,15 +85,52 @@ async function buildMovie() {
     firstGenderMovies = await buildMoviesData(firstGenderData, max_length=7)
     buildMovies(firstGenderMovies, "movie__first-category-image-")
 
+    // FETCH AND BUILD MOVIES FOR SECOND CATEGORY  
     secondGenderData = await get(API_ENDPOINT + "?genre=" + SECOND_GENDER + "&sort_by=-year")
     secondGenderMovies = await buildMoviesData(secondGenderData, max_length=7)
     buildMovies(secondGenderMovies, "movie__second-category-image-")
 
+    // FETCH AND BUILD MOVIES FOR THIRD CATEGORY  
     thirdGenderData = await get(API_ENDPOINT + "?genre=" + THIRD_GENDER + "&sort_by=-year")
     console.log(thirdGenderData)
     thirdGenderMovies = await buildMoviesData(thirdGenderData, max_length=7)
     buildMovies(thirdGenderMovies, "movie__third-category-image-")
 }
 
-// get and display information about the best movie of the api and the seven others
+async function fillModalWindow(data) {
+    let modalWindow = document.getElementById("modal")
+    let modalImg = document.getElementById("modal__img")
+    let modalTitle = document.getElementById("modal__title")
+    let modalGender = document.getElementById("modal__gender")
+    let modalDate = document.getElementById("modal__date")
+    let modalRated = document.getElementById("modal__rated")
+    let modalImdbScore = document.getElementById("modal__imdb-score")
+    let modalRealisator = document.getElementById("modal__realisator")
+    let modalActorList = document.getElementById("modal__actor-list")
+    let modalDuration = document.getElementById("modal__duration")
+    let modalCountry = document.getElementById("modal__country")
+    let modalBoxOffice = document.getElementById("modal__box-office")
+    let modalSummary = document.getElementById("modal__summary")
+    let modalButton = document.getElementById("modal__button")
+    modalDate.innerHTML = data.date_published
+    modalRated.innerHTML = data.rated
+    modalImdbScore.innerHTML = data.imdb_score
+    modalRealisator.innerHTML = data.directors[0]
+    modalActorList.innerHTML = data.actors[0]
+    modalDuration.innerHTML = data.duration
+    modalCountry.innerHTML = data.countries
+    modalGender.innerHTML = data.genres[0]
+    modalTitle.innerHTML = data.title
+    modalBoxOffice.innerHTML = data.worldwide_gross_income
+    modalSummary.innerHTML = data.long_description
+
+
+    modalButton.addEventListener("click", function() {
+        modalWindow.setAttribute("class", "modal --inactive")
+    })
+
+    modalImg.setAttribute("src", data.image_url)
+    modalWindow.setAttribute("class", "modal --active")
+}
+
 buildMovie()
