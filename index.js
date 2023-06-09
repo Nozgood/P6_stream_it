@@ -112,17 +112,17 @@ async function fillModalWindow(data) {
     let modalBoxOffice = document.getElementById("modal__box-office")
     let modalSummary = document.getElementById("modal__summary")
     let modalButton = document.getElementById("modal__button")
-    modalDate.innerHTML = data.date_published
-    modalRated.innerHTML = data.rated
-    modalImdbScore.innerHTML = data.imdb_score
-    modalRealisator.innerHTML = data.directors[0]
-    modalActorList.innerHTML = data.actors[0]
-    modalDuration.innerHTML = data.duration
-    modalCountry.innerHTML = data.countries
-    modalGender.innerHTML = data.genres[0]
-    modalTitle.innerHTML = data.title
-    modalBoxOffice.innerHTML = data.worldwide_gross_income
-    modalSummary.innerHTML = data.long_description
+    modalDate.innerHTML = "Date de sortie: " + data.date_published
+    modalRated.innerHTML = "Note: " + data.rated
+    modalImdbScore.innerHTML = "Score Imdb: "  + data.imdb_score
+    modalRealisator.innerHTML = "Directeur: " + data.directors[0]
+    modalActorList.innerHTML = "Acteurs: " + data.actors[0]
+    modalDuration.innerHTML = "Durée: " + data.duration
+    modalCountry.innerHTML = "Pays de sortie:" + data.countries
+    modalGender.innerHTML = "Genres: " + data.genres[0]
+    modalTitle.innerHTML = "Titre: " + data.title
+    modalBoxOffice.innerHTML = "Box Office: " + data.worldwide_gross_income
+    modalSummary.innerHTML = "Résumé: " + data.long_description
 
 
     modalButton.addEventListener("click", function() {
