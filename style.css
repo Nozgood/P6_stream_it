@@ -125,7 +125,10 @@ button:hover {
 
 .second__movie-container {
     display: flex;
+    position: relative;
+    width: 30%;
     flex-direction: column;
+    align-items: center;
     gap: 2rem;
     margin-bottom: 4rem;
 }
@@ -138,6 +141,9 @@ button:hover {
     display: flex;
     justify-content: center;
     gap: 2rem;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
 }
 
 /**/
@@ -145,6 +151,7 @@ button:hover {
     padding: 2rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
 }
 
@@ -209,7 +216,7 @@ button:hover {
 
 .--active {
     opacity: 1;
-    z-index: 1;
+    z-index: 2;
 }
 
 .modal__content {
@@ -236,6 +243,32 @@ button:hover {
     overflow: hidden;
 }
 
-.modal__content-informations-list p:hover {
+.slider {
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    padding: 1rem;
+    z-index: 1;
+}
 
+.slider__previous {
+    left: -10%;
+}
+
+.slider__next {
+    right: -10%;
+}
+
+.arrow__right {
+    transform: rotate(180deg);
+}
+
+.arrow {
+    width: 50px;
+    height: 50px;
 }

@@ -134,3 +134,22 @@ async function fillModalWindow(data) {
 }
 
 buildMovie()
+
+
+// SLIDER 
+const CONTAINER = document.getElementById("second__movie-container")
+const SLIDER_BUTTON_PREV = document.getElementById("slider__previous")
+const SLIDER_BUTTON_NEXT = document.getElementById("slider__next")
+const CARDS_CONTAINER = document.getElementById("movie__cards-best-movies")
+
+
+SLIDER_BUTTON_PREV.onclick = () => {
+    const widthToScroll = CARDS_CONTAINER.children[0].offsetWidth
+    CARDS_CONTAINER.scrollLeft -= widthToScroll
+}
+
+SLIDER_BUTTON_NEXT.onclick = () => {
+    const widthToScroll = CARDS_CONTAINER.children[0].offsetWidth
+    console.log("prout next")
+    CARDS_CONTAINER.scrollLeft += widthToScroll
+}
