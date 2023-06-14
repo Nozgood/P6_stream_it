@@ -66,7 +66,6 @@ button:hover {
 .header__nav {
     display: flex;
     gap: var(--default-padding);
-    padding-right: 8rem;
 }
 
 .header__nav a {
@@ -101,7 +100,7 @@ button:hover {
 }
 
 .img__container img:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 
 .best__movie-informations {
@@ -126,7 +125,7 @@ button:hover {
 .second__movie-container {
     display: flex;
     position: relative;
-    width: 40%;
+    width: 856px;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
@@ -139,7 +138,7 @@ button:hover {
 
 .movie__cards {
     display: flex;
-    gap: 2rem;
+    gap: 32px;
     width: 100%;
     overflow-x: auto;
     scroll-behavior: smooth;
@@ -165,7 +164,7 @@ button:hover {
     flex-direction: column;
     position: relative;
     gap: 2rem;
-    width: 40%;
+    width: 856px;
 }
 
 .movie__category-title {
@@ -253,4 +252,81 @@ button:hover {
 .arrow {
     width: 50px;
     height: 50px;
+}
+
+/* ------ REPONSIVE MOBILE ------ */
+
+@media screen and ( max-width: 640px) {
+
+    body {
+        min-width: 375px;
+    }
+
+    #modal {
+        width: 375px;
+    }
+    .modal__content-informations-title {
+        margin-bottom: .5rem;
+    }
+    
+    .modal__content-img img {
+        width: 100px;
+    }
+
+    .modal__content-informations-list p {
+        max-width: 200px;
+    }
+
+    h1 {
+        font-size: 1rem;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .header__nav a {
+        font-size: .8rem;
+    }
+
+    .best__movie {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .best__movie-informations {
+        height: auto;
+        gap: 1rem;
+    }
+
+
+    .second__movie-container, .movie__category-container {
+        width: 180px;
+    }
+
+    .slider__previous {
+        left: -20%;
+    }
+    img {
+        width: 150px;
+        
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .header__nav {
+        padding-right: 8rem;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1023px){
+    .header__nav {
+        padding-right: 8rem;
+    }
+
+    .second__movie-container {
+        width: 642px;
+    }
 }
