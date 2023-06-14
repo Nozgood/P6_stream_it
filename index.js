@@ -47,6 +47,7 @@ async function buildMoviesData(data, max_length) {
 async function buildBestMovie(data) {
     // FETCH FULL INFO OF BEST MOVIE
     const singleMovieData = await get(API_ENDPOINT + "/" + data.id)
+    console.log(singleMovieData)
 
     // INSERT IN THE HTML
     BEST_MOVIE_TITLE.innerHTML = singleMovieData.title
@@ -139,7 +140,7 @@ async function fillModalWindow(data) {
     modalGender.innerHTML = "Genre(s): " + allGenres
     modalTitle.innerHTML = "Titre: " + data.title
     if (data.worldwide_gross_income != null) {
-        modalBoxOffice.innerHTML = "Box Office: " + data.worldwide_gross_income
+        modalBoxOffice.innerHTML = "Box Office: " + data.worldwide_gross_income + " $"
     } else {
         modalBoxOffice.innerHTML = "Box Office: inconnu" 
     }
