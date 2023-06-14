@@ -114,11 +114,29 @@ async function fillModalWindow(data) {
     modalDate.innerHTML = "Date de sortie: " + data.date_published
     modalRated.innerHTML = "Note: " + data.rated
     modalImdbScore.innerHTML = "Score Imdb: "  + data.imdb_score
-    modalRealisator.innerHTML = "Directeur: " + data.directors[0]
-    modalActorList.innerHTML = "Acteur: " + data.actors[0]
+    modalRealisator.innerHTML = "Réalisateur: " + data.directors[0]
+    let allActors = ""
+    for (let i=0; i < data.actors.length; i++) {
+        if (i == data.actors.length -1) {
+            allActors += data.actors[i] 
+        } else {
+            allActors += data.actors[i] + ", "
+        }
+    }
+
+    modalActorList.innerHTML = "Acteurs: " + allActors
     modalDuration.innerHTML = "Durée: " + data.duration + " minutes"
     modalCountry.innerHTML = "Pays de sortie:" + data.countries
-    modalGender.innerHTML = "Genre: " + data.genres[0]
+    let allGenres = ""
+    for (let i=0; i < data.genres.length; i++) {
+        if (i == data.genres.length -1) {
+            allGenres += data.genres[i]
+        } else {
+            allGenres += data.genres[i] + ", "
+        }
+    }
+
+    modalGender.innerHTML = "Genre(s): " + allGenres
     modalTitle.innerHTML = "Titre: " + data.title
     if (data.worldwide_gross_income != null) {
         modalBoxOffice.innerHTML = "Box Office: " + data.worldwide_gross_income
