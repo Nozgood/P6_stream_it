@@ -115,10 +115,10 @@ async function fillModalWindow(data) {
     modalRated.innerHTML = "Note: " + data.rated
     modalImdbScore.innerHTML = "Score Imdb: "  + data.imdb_score
     modalRealisator.innerHTML = "Directeur: " + data.directors[0]
-    modalActorList.innerHTML = "Acteurs: " + data.actors[0]
+    modalActorList.innerHTML = "Acteur: " + data.actors[0]
     modalDuration.innerHTML = "Durée: " + data.duration + " minutes"
     modalCountry.innerHTML = "Pays de sortie:" + data.countries
-    modalGender.innerHTML = "Genres: " + data.genres[0]
+    modalGender.innerHTML = "Genre: " + data.genres[0]
     modalTitle.innerHTML = "Titre: " + data.title
     if (data.worldwide_gross_income != null) {
         modalBoxOffice.innerHTML = "Box Office: " + data.worldwide_gross_income
