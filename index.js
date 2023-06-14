@@ -7,6 +7,8 @@ const BEST_MOVIE_DESC = document.getElementById("best__movie-description")
 const FIRST_GENDER = "Adventure"
 const SECOND_GENDER = "Animation"
 const THIRD_GENDER = "Fantasy"
+const SLIDER_NEXT = document.querySelectorAll(".slider__next")
+const SLIDER_PREVIOUS = document.querySelectorAll(".slider__previous")
 
 // get function will fetch the given url and returns raw datas 
 async function get(URL) {
@@ -45,7 +47,6 @@ async function buildMoviesData(data, max_length) {
 async function buildBestMovie(data) {
     // FETCH FULL INFO OF BEST MOVIE
     const singleMovieData = await get(API_ENDPOINT + "/" + data.id)
-    console.log(singleMovieData)
 
     // INSERT IN THE HTML
     BEST_MOVIE_TITLE.innerHTML = singleMovieData.title
@@ -64,7 +65,6 @@ async function buildMovies(movies, idName) {
         movieImg.setAttribute("data-id", movies[i].id)
         movieImg.addEventListener("click", async function() {
             let movieData = await get(API_ENDPOINT + "/" + movieImg.dataset.id)
-            console.log(movieData)
             fillModalWindow(movieData)
         })
     }
@@ -92,7 +92,6 @@ async function buildMovie() {
 
     // FETCH AND BUILD MOVIES FOR THIRD CATEGORY  
     thirdGenderData = await get(API_ENDPOINT + "?genre=" + THIRD_GENDER + "&sort_by=-year")
-    console.log(thirdGenderData)
     thirdGenderMovies = await buildMoviesData(thirdGenderData, max_length=7)
     buildMovies(thirdGenderMovies, "movie__third-category-image-")
 }
@@ -140,71 +139,20 @@ async function fillModalWindow(data) {
 
 buildMovie()
 
-
-// SLIDER 
-const SLIDER_BUTTON_PREV_BEST_CATEGORY = document.getElementById("slider__previous")
-const SLIDER_BUTTON_NEXT_BEST_CATEGORY = document.getElementById("slider__next")
-const SLIDER_BUTTON_PREV_FIRST_CATEGORY = document.getElementById("slider__previous-firt-category")
-const SLIDER_BUTTON_NEXT_FIRST_CATEGORY = document.getElementById("slider__next-first-category")
-const SLIDER_BUTTON_PREV_SECOND_CATEGORY = document.getElementById("slider__previous-second-category")
-const SLIDER_BUTTON_NEXT_SECOND_CATEGORY = document.getElementById("slider__next-second-category")
-const SLIDER_BUTTON_PREV_THIRD_CATEGORY = document.getElementById("slider__previous-third-category")
-const SLIDER_BUTTON_NEXT_THIRD_CATEGORY = document.getElementById("slider__next-third-category")
-
-
-SLIDER_BUTTON_PREV_BEST_CATEGORY.onclick = () => {
-    const container = document.getElementById("second__movie-container")
-    const cards_container = document.getElementById("movie__cards-best-movies")
-    const widthToScroll = cards_container.children[0].offsetWidth
-    cards_container.scrollLeft -= widthToScroll + 32
+for (let i=0; i < SLIDER_NEXT.length; i ++) {
+    SLIDER_NEXT[i].addEventListener("click", () => {
+        let container = SLIDER_NEXT[i].parentNode
+        let cardsContainer = container.getElementsByClassName("movie__cards")[0]
+        const widthToScroll = cardsContainer.children[0].offsetWidth
+        cardsContainer.scrollLeft += widthToScroll + 32
+    })
 }
 
-SLIDER_BUTTON_NEXT_BEST_CATEGORY.onclick = () => {
-    const container = document.getElementById("second__movie-container")
-    const cards_container = document.getElementById("movie__cards-best-movies")
-    const widthToScroll = cards_container.children[0].offsetWidth
-    cards_container.scrollLeft += widthToScroll + 32
+for (let i=0; i < SLIDER_PREVIOUS.length; i ++) {
+    SLIDER_PREVIOUS[i].addEventListener("click", () => {
+        let container = SLIDER_PREVIOUS[i].parentNode
+        let cardsContainer = container.getElementsByClassName("movie__cards")[0]
+        const widthToScroll = cardsContainer.children[0].offsetWidth
+        cardsContainer.scrollLeft -= widthToScroll + 32
+    })
 }
-
-SLIDER_BUTTON_PREV_FIRST_CATEGORY.onclick = () => {
-    const container = document.getElementById("first__category")
-    const cards_container = document.getElementById("movie__cards-first-category")
-    const widthToScroll = cards_container.children[0].offsetWidth
-    cards_container.scrollLeft -= widthToScroll + 32
-}
-
-SLIDER_BUTTON_NEXT_FIRST_CATEGORY.onclick = () => {
-    const container = document.getElementById("first__category")
-    const cards_container = document.getElementById("movie__cards-first-category")
-    const widthToScroll = cards_container.children[0].offsetWidth
-    cards_container.scrollLeft += widthToScroll + 32
-}
-
-SLIDER_BUTTON_PREV_SECOND_CATEGORY.onclick = () => {
-    const container = document.getElementById("second__category")
-    const cards_container = document.getElementById("movie__cards-second-category")
-    const widthToScroll = cards_container.children[0].offsetWidth
-    cards_container.scrollLeft -= widthToScroll + 32
-}
-
-SLIDER_BUTTON_NEXT_SECOND_CATEGORY.onclick = () => {
-    const container = document.getElementById("second__category")
-    const cards_container = document.getElementById("movie__cards-second-category")
-    const widthToScroll = cards_container.children[0].offsetWidth
-    cards_container.scrollLeft += widthToScroll + 32
-}
-
-SLIDER_BUTTON_PREV_THIRD_CATEGORY.onclick = () => {
-    const container = document.getElementById("third__category")
-    const cards_container = document.getElementById("movie__cards-third-category")
-    const widthToScroll = cards_container.children[0].offsetWidth
-    cards_container.scrollLeft -= widthToScroll + 32
-}
-
-SLIDER_BUTTON_NEXT_THIRD_CATEGORY.onclick = () => {
-    const container = document.getElementById("third__category")
-    const cards_container = document.getElementById("movie__cards-third-category")
-    const widthToScroll = cards_container.children[0].offsetWidth
-    cards_container.scrollLeft += widthToScroll + 32
-}
-
