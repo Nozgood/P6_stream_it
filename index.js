@@ -130,11 +130,11 @@ async function fillModalWindow(data) {
 
 
     modalButton.addEventListener("click", function() {
-        modalWindow.setAttribute("class", "modal --inactive")
+        modalWindow.setAttribute("class", "modal inactive")
     })
 
     modalImg.setAttribute("src", data.image_url)
-    modalWindow.setAttribute("class", "modal --active")
+    modalWindow.setAttribute("class", "modal active")
 }
 
 buildMovie()
