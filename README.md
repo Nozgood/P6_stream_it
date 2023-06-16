@@ -16,6 +16,7 @@ You can have more information about each film like :
     - Summary
 
 The application just display 7 movies for each category, which are 4 :
+
     - Best IMDB Score 
     - Adventure 
     - Animation
