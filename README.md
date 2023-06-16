@@ -4,6 +4,7 @@ Just Stream It is a Web Application for the JustStreamIt association
 
 The purpose of the application is to display some movies in function of a category and a IMDB score
 You can have more information about each film like : 
+
     - Gender 
     - Year of realise 
     - Score IMDB
