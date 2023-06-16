@@ -4,6 +4,7 @@ Just Stream It is a Web Application for the JustStreamIt association
 
 The purpose of the application is to display some movies in function of a category and a IMDB score
 You can have more information about each film like : 
+
     - Gender 
     - Year of realise 
     - Score IMDB
@@ -15,6 +16,7 @@ You can have more information about each film like :
     - Summary
 
 The application just display 7 movies for each category, which are 4 :
+
     - Best IMDB Score 
     - Adventure 
     - Animation
@@ -32,6 +34,7 @@ Just Stream It est une application Web crée pour l'association du même nom Jus
 
 Le but de l'application est d'afficher des films en fonction de certains critères comme une catégorie ou un score IMDB 
 Vous pouvez également avoir plus d'information sur chaque film comme : 
+
     - le genre 
     - l'année de sortie 
     - le scord IMDB 
