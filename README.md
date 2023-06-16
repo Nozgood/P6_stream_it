@@ -33,6 +33,7 @@ Just Stream It est une application Web crée pour l'association du même nom Jus
 
 Le but de l'application est d'afficher des films en fonction de certains critères comme une catégorie ou un score IMDB 
 Vous pouvez également avoir plus d'information sur chaque film comme : 
+
     - le genre 
     - l'année de sortie 
     - le scord IMDB 
